@@ -1,7 +1,17 @@
-export default function ChatPage() {
+import Chat from "@/components/Chat"
+import ChatInput from "@/components/ChatInput"
+
+type Props = {
+  params: {
+    id: string;
+  }
+}
+
+export default function ChatPage({ params: { id }}: Props) {
   return (
-    <div>
-      <h1>Chat Page</h1>
+    <div className="flex flex-col h-screen overflow-hidden">
+      <Chat chatId={id} />
+      <ChatInput chatId={id} />
     </div>
   )
 }
