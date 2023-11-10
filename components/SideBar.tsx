@@ -1,7 +1,17 @@
+import NewChat from "./NewChat"
+
 export default function SideBar() {
   return (
-    <div>
-      SideBar
+    <div className="p-2 flex flex-col h-screen">
+      <div className="flex-1">
+        <div>
+          <NewChat />
+          <div>
+            {/* ModelSelection */}
+          </div>
+          {/* Map through the rows */}
+        </div>
+      </div>
     </div>
   )
 }
