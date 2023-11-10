@@ -6,6 +6,7 @@ import SideBar from '@/components/SideBar'
 import SessionProvider from '@/components/SessionProvider'
 import { authOptions } from './api/auth/[...nextauth]/route'
 import Login from '@/components/Login'
+import ClientProvider from '@/components/ClientProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,12 +32,11 @@ export default async function RootLayout({
               <div className="bg-[#202123] max-w-xs h-screen overflow-y-auto md:min-w-[20rem]">
                 <SideBar />
               </div>
-              {/* Client Provider Notifications */}
+              <ClientProvider />
               <div className='bg-[#343541] flex-1'>
                 {children}
               </div>
             </div>
-            
           )}
         </SessionProvider>
       </body>

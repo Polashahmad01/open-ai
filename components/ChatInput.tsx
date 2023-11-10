@@ -5,6 +5,7 @@ import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import { FormEvent, useState } from "react"
+import toast from "react-hot-toast";
 
 type Props = {
   chatId: string;
@@ -27,7 +28,7 @@ export default function ChatInput({ chatId }: Props) {
 
     const message: Message = {
       text: input,
-      createdAt: serverTimestamp,
+      createdAt: serverTimestamp(),
       user: {
         _id: session?.user?.email!,
         name: session?.user?.name!,
@@ -40,7 +41,7 @@ export default function ChatInput({ chatId }: Props) {
       message
     )
 
-    // Notification
+    const notification = toast.loading("Generating...")
 
     await fetch("/api/askQuestion", {
       method: "POST",
@@ -51,7 +52,9 @@ export default function ChatInput({ chatId }: Props) {
         prompt: input, chatId, model, session
       })
     }).then(() => {
-      // Notification
+      toast.success("Generated...", {
+        id: notification
+      })
     })
   }
 
